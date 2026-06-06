@@ -3,7 +3,7 @@
 import { useCallback, useEffect, useRef } from "react";
 import { AnimatePresence } from "framer-motion";
 import { AnimatedDiv } from "@/lib/motion/AnimatedDiv";
-import { ArrowDown, ArrowUp, Loader2, Paperclip, X } from "lucide-react";
+import { ArrowDown, ArrowUp, Loader2, Paperclip, X, SearchX } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useUiStore } from "@/stores/useUiStore";
 import { useSearch } from "@/hooks/useSearch";
@@ -266,8 +266,12 @@ export function SearchResults() {
 
       {/* Empty state */}
       {!isLoading && !isError && hasValidCommittedSearch && results.length === 0 && (
-        <div className="flex flex-1 items-center justify-center px-4 pt-4 text-center">
-          <p className="text-sm text-muted-foreground">No results found</p>
+        <div className="flex flex-1 flex-col items-center justify-center gap-3 px-4 text-center">
+          <SearchX className="size-10 text-muted-foreground/40" strokeWidth={1.25} />
+          <div>
+            <p className="text-sm font-medium text-muted-foreground">No results found</p>
+            <p className="mt-0.5 text-xs text-muted-foreground/70">Try different keywords or check spelling</p>
+          </div>
         </div>
       )}
 

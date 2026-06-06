@@ -4,7 +4,7 @@ import { useRef, useCallback, useEffect, useState } from "react";
 import { useVirtualizer } from "@tanstack/react-virtual";
 import { AnimatePresence } from "framer-motion";
 import { AnimatedDiv } from "@/lib/motion/AnimatedDiv";
-import { PenLine, X, PanelRight } from "lucide-react";
+import { PenLine, X, PanelRight, Inbox, Tag } from "lucide-react";
 import { useMessages } from "@/hooks/useMessages";
 import { useTags, useTagMessages } from "@/hooks/useTags";
 import { useListDrafts, useGetDraft, useDeleteDraft } from "@/hooks/useCompose";
@@ -438,8 +438,15 @@ export function MessageList() {
 
       {/* Empty state (only when not a drafts folder or no drafts either) */}
       {!isLoading && !isError && messages.length === 0 && !showDrafts && (
-        <div className="flex flex-1 items-center justify-center text-muted-foreground">
-          {isTagView ? "No messages with this tag" : "No messages in this folder"}
+        <div className="flex flex-1 flex-col items-center justify-center gap-3 text-center">
+          {isTagView ? (
+            <Tag className="size-10 text-muted-foreground/40" strokeWidth={1.25} />
+          ) : (
+            <Inbox className="size-10 text-muted-foreground/40" strokeWidth={1.25} />
+          )}
+          <p className="text-sm font-medium text-muted-foreground">
+            {isTagView ? "No messages with this tag" : "No messages in this folder"}
+          </p>
         </div>
       )}
 

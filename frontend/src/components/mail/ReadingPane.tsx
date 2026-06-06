@@ -13,6 +13,7 @@ import {
   Sun,
   Moon,
   Monitor,
+  Mail,
 } from "lucide-react";
 import { useQueryClient } from "@tanstack/react-query";
 import { useUiStore } from "@/stores/useUiStore";
@@ -102,8 +103,9 @@ export function ReadingPane() {
   // No message selected
   if (selectedMessageUid === null) {
     return (
-      <div className="flex h-full items-center justify-center text-muted-foreground">
-        Select a message to read
+      <div className="flex h-full flex-col items-center justify-center gap-3 text-center">
+        <Mail className="size-10 text-muted-foreground/40" strokeWidth={1.25} />
+        <p className="text-sm font-medium text-muted-foreground">Select a message from the list</p>
       </div>
     );
   }

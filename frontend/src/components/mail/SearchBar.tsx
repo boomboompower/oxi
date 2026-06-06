@@ -32,7 +32,6 @@ export function SearchBar() {
 
   const [inputValue, setInputValue] = useState(searchQuery);
   const [showTips, setShowTips] = useState(false);
-  const [mouseHolding, setMouseHolding] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
   const tipsButtonRef = useRef<HTMLButtonElement>(null);
   const tipsRef = useRef<HTMLDivElement>(null);
@@ -230,24 +229,7 @@ export function SearchBar() {
             <button
               ref={tipsButtonRef}
               type="button"
-              onMouseDown={() => {
-                setMouseHolding(true);
-                setShowTips(true);
-              }}
-              onMouseUp={() => {
-                setMouseHolding(false);
-                setShowTips(false);
-              }}
-              onMouseLeave={() => {
-                if (mouseHolding) {
-                  setMouseHolding(false);
-                  setShowTips(false);
-                }
-              }}
-              onTouchStart={(e) => {
-                e.preventDefault();
-                setShowTips((prev) => !prev);
-              }}
+              onClick={() => setShowTips((prev) => !prev)}
               onKeyDown={(e) => {
                 if (e.key === "Enter" || e.key === " ") {
                   e.preventDefault();
